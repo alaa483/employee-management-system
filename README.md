@@ -53,21 +53,16 @@ A full-stack Employee Management System built using Node.js, Express.js, MySQL, 
 
 ```bash
 git clone https://github.com/alaa483/employee-management-system.git
-```
-
-### 2. Navigate to the project directory
-
-```bash
 cd employee-management-system
 ```
 
-### 3. Install dependencies
+### 2. Install dependencies
 
 ```bash
 npm install
 ```
 
-### 4. Configure environment variables
+### 3. Configure environment variables
 
 Create a `.env` file in the project root:
 
@@ -84,34 +79,34 @@ ADMIN_USERNAME=admin
 ADMIN_PASSWORD=YOUR_ADMIN_PASSWORD
 ```
 
-Replace the placeholder values with your own local configuration. Do not publish your `.env` file.
+Replace the placeholder values with your own settings. Use a strong password and a secure JWT secret. Never publish your `.env` file.
 
-### 5. Set up the database
+### 4. Set up the database
 
-Run the SQL script in `database.sql` using MySQL Workbench.
+Run `database.sql` using MySQL Workbench to create the database and required tables.
 
-This creates the database and required tables.
+### 5. Create the initial administrator
 
-### 6. Create the initial administrator
-
-Configure `ADMIN_USERNAME` and `ADMIN_PASSWORD` in your `.env` file, then run:
+Run this command only when the database does not already contain an administrator:
 
 ```bash
 npm run create-admin
+```
 
-### 7. Start the application
+The script will refuse to create another administrator if one already exists.
+
+### 6. Start the application
+
+```bash
 npm start
+```
 
-### 8. Start the application
-Open the application
+### 7. Open the application
+
 Visit:
+
 http://localhost:3000
 
-احفظ الملف بـ `Ctrl + S`.
-
-**مهم:** لا تشغّل أمر `npm run create-admin` على قاعدة بياناتك الحالية؛ لأن حساب المدير موجود بالفعل.
-
-أخبرني عندما تنتهي.
 ## Security
 
 - Passwords are hashed before storage.
