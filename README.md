@@ -1,4 +1,3 @@
-
 # Employee Management System
 
 A full-stack Employee Management System built using Node.js, Express.js, MySQL, HTML, CSS, and JavaScript.
@@ -10,15 +9,17 @@ A full-stack Employee Management System built using Node.js, Express.js, MySQL, 
 - Employee management.
 - Department management.
 - User account management.
-- Password hashing using bcrypt.
+- Password hashing using bcryptjs.
 - MySQL database integration.
 - RESTful API architecture.
 - Protected API routes.
 - Session invalidation after password reset.
+- Responsive web interface.
 
 ## User Roles
 
 ### Admin
+
 - View employees and departments.
 - Add, edit, and delete employees.
 - Add, edit, and delete departments.
@@ -28,6 +29,7 @@ A full-stack Employee Management System built using Node.js, Express.js, MySQL, 
 - Reset user passwords.
 
 ### User
+
 - View employees and departments.
 - Add employees.
 - Add departments.
@@ -47,38 +49,60 @@ A full-stack Employee Management System built using Node.js, Express.js, MySQL, 
 
 ## Installation
 
-1. Clone the repository:
+### 1. Clone the repository
 
-   git clone YOUR_REPOSITORY_URL
+```bash
+git clone https://github.com/alaa483/employee-management-system.git
+```
 
-2. Navigate to the project directory:
+### 2. Navigate to the project directory
 
-   cd employee-management-system
+```bash
+cd employee-management-system
+```
 
-3. Install dependencies:
+### 3. Install dependencies
 
-   npm install
+```bash
+npm install
+```
 
-4. Create a `.env` file in the project root:
+### 4. Configure environment variables
 
-   PORT=3000
-   DB_HOST=127.0.0.1
-   DB_PORT=3306
-   DB_USER=root
-   DB_PASSWORD=YOUR_DATABASE_PASSWORD
-   DB_NAME=company_db
-   JWT_SECRET=YOUR_SECRET_KEY
-   JWT_EXPIRES_IN=1h
+Create a `.env` file in the project root:
 
-5. Create the MySQL database and required tables.
+```env
+PORT=3000
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=YOUR_DATABASE_PASSWORD
+DB_NAME=company_db
+JWT_SECRET=YOUR_SECRET_KEY
+JWT_EXPIRES_IN=1h
+```
 
-6. Start the application:
+Replace the placeholder values with your own local configuration. Do not publish your `.env` file.
 
-   npm start
+### 5. Set up the database
 
-7. Open your browser:
+Run the SQL script in `database.sql` using MySQL Workbench.
 
-   http://localhost:3000
+This creates the database and required tables.
+
+**Note:** An initial administrator account must be created before using the system. Account registration is restricted to administrators.
+
+### 6. Start the application
+
+```bash
+npm start
+```
+
+### 7. Open the application
+
+Visit:
+
+http://localhost:3000
 
 ## Security
 
@@ -86,6 +110,7 @@ A full-stack Employee Management System built using Node.js, Express.js, MySQL, 
 - JWT authentication protects private routes.
 - Role-based authorization restricts sensitive operations.
 - SQL queries use parameterized statements.
+- Password reset invalidates existing user sessions.
 
 ## License
 
