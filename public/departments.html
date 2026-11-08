@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <script src="js/auth.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>إدارة الأقسام</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <header class="header">
+
+            <div>
+                <h1>إدارة الأقسام والإدارات</h1>
+                <p>إدارة الهيكل التنظيمي للشركة</p>
+            </div>
+
+            <div class="header-user-actions">
+
+                <a href="/" class="refresh-button">
+                    العودة للموظفين
+                </a>
+
+                <button id="logoutButton" class="logout-button">
+                    تسجيل الخروج
+                </button>
+
+            </div>
+
+        </header>
+
+        <main class="container">
+
+            <section class="welcome">
+
+                <h2>الأقسام والإدارات</h2>
+
+                <p>
+                    يمكنك من خلال هذه الشاشة متابعة الأقسام
+                    المسجلة في النظام.
+                </p>
+
+            </section>
+
+            <section class="statistics">
+
+                <div class="stat-card">
+
+                    <span>إجمالي الأقسام</span>
+
+                    <strong id="departmentCount">0</strong>
+
+                </div>
+
+            </section>
+
+            <section class="employees-section">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2>قائمة الأقسام</h2>
+
+                        <p>جميع الأقسام المسجلة في قاعدة البيانات</p>
+
+                    </div>
+
+                    <div class="header-actions">
+
+                        <button id="addDepartmentButton" class="add-button">
+                            + إضافة قسم جديد
+                        </button>
+
+                        <button id="refreshDepartmentsButton" class="refresh-button">
+                            تحديث البيانات ↻
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>رقم القسم</th>
+                                <th>اسم القسم</th>
+                                <th>تاريخ الإنشاء</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="departmentTableBody">
+
+                            <tr>
+                                <td colspan="4">
+                                    جاري تحميل الأقسام...
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <p id="departmentMessage" class="message"></p>
+
+            </section>
+
+        </main>
+
+        <!-- نافذة إضافة قسم جديد -->
+        <div id="departmentModal" class="modal">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h2>إضافة قسم جديد</h2>
+
+                    <button type="button" id="closeDepartmentModal" class="close-button">
+                        ×
+                    </button>
+
+                </div>
+
+                <form id="departmentForm">
+
+                    <div class="form-group">
+
+                        <label for="departmentName">
+                            اسم القسم
+                        </label>
+
+                        <input type="text" id="departmentName" placeholder="أدخل اسم القسم" maxlength="100" required>
+
+                    </div>
+
+                    <p id="departmentFormMessage" class="message"></p>
+
+                    <div class="form-actions">
+
+                        <button type="submit" class="save-button">
+                            حفظ القسم
+                        </button>
+
+                        <button type="button" id="cancelDepartmentButton" class="cancel-button">
+                            إلغاء
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <!-- نافذة تعديل القسم -->
+        <div id="editDepartmentModal" class="modal">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h2>تعديل بيانات القسم</h2>
+
+                    <button type="button" id="closeEditDepartmentModal" class="close-button">
+                        ×
+                    </button>
+
+                </div>
+
+                <form id="editDepartmentForm">
+
+                    <input type="hidden" id="editDepartmentId">
+
+                    <div class="form-group">
+
+                        <label for="editDepartmentName">
+                            اسم القسم
+                        </label>
+
+                        <input type="text" id="editDepartmentName" maxlength="100" required>
+
+                    </div>
+
+                    <p id="editDepartmentMessage" class="message"></p>
+
+                    <div class="form-actions">
+
+                        <button type="submit" class="save-button">
+                            حفظ التعديلات
+                        </button>
+
+                        <button type="button" id="cancelEditDepartment" class="cancel-button">
+                            إلغاء
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <footer>
+            نظام إدارة الموظفين © 2026
+        </footer>
+
+    </div>
+
+    <script src="/js/departments.js"></script>
+
+</body>
+
+</html>

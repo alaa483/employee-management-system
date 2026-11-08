@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <script src="js/auth.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>نظام إدارة الموظفين</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+
+<body>
+
+    <div class="dashboard">
+
+
+        <header class="header">
+
+            <div>
+                <h1>نظام إدارة الموظفين</h1>
+                <p>لوحة التحكم الرئيسية</p>
+            </div>
+
+            <div class="header-user-actions">
+
+                <div class="header-badge">
+                    نظام الموارد البشرية
+                </div>
+
+                <button id="logoutButton" class="logout-button">
+                    تسجيل الخروج
+                </button>
+
+            </div>
+
+        </header>
+
+
+
+        <main class="app-layout">
+
+            <!-- القائمة الجانبية -->
+            <aside class="sidebar">
+
+                <h2>القائمة الرئيسية</h2>
+
+                <nav class="sidebar-nav">
+
+                    <button type="button" id="dashboardNavButton" class="nav-button active">
+                        🏠 الشاشة الرئيسية
+                    </button>
+
+                    <button type="button" id="employeesNavButton" class="nav-button">
+                        👥 الموظفون
+                    </button>
+
+                    <button type="button" id="departmentsNavButton" class="nav-button">
+                        🏢 الأقسام
+                    </button>
+                    <button type="button" id="settingsNavButton" class="nav-button" hidden>
+                        ⚙️ الإعدادات
+                    </button>
+                </nav>
+
+            </aside>
+
+            <!-- محتوى النظام -->
+            <div class="main-content">
+
+                <!-- الشاشة الرئيسية -->
+                <section id="dashboardSection" class="page-section">
+
+                    <section class="welcome">
+                        <h2>مرحبًا بك 👋</h2>
+                        <p>يمكنك من خلال هذه الشاشة متابعة مؤشرات نظام الموارد البشرية.</p>
+                    </section>
+
+                    <section class="statistics">
+
+                        <div class="stat-card">
+                            <span>إجمالي الموظفين</span>
+                            <strong id="employeeCount">0</strong>
+                        </div>
+
+                        <div class="stat-card">
+                            <span>إجمالي الأقسام</span>
+                            <strong id="departmentCount">0</strong>
+                        </div>
+
+                        <div class="stat-card">
+                            <span>إجمالي الرواتب</span>
+                            <strong id="totalSalaries">0</strong>
+                        </div>
+
+                    </section>
+
+                </section>
+
+                <!-- شاشة الموظفين -->
+                <section id="employeesSection" class="page-section" hidden>
+
+                    <section class="employees-section">
+
+                        <div class="section-header">
+
+                            <div>
+                                <h2>قائمة الموظفين</h2>
+                                <p>جميع الموظفين المسجلين في النظام</p>
+                            </div>
+
+                            <div class="header-actions">
+
+                                <button id="addEmployeeButton" class="add-button">
+                                    + إضافة موظف جديد
+                                </button>
+
+                                <button id="refreshButton" class="refresh-button">
+                                    تحديث البيانات ↻
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="search-box">
+                            <input type="text" id="searchInput" placeholder="ابحث باسم الموظف أو البريد الإلكتروني...">
+                        </div>
+
+                        <div class="table-container">
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>الرقم</th>
+                                        <th>اسم الموظف</th>
+                                        <th>البريد الإلكتروني</th>
+                                        <th>الراتب</th>
+                                        <th>القسم</th>
+                                        <th>الإجراءات</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="employeesTable">
+                                    <tr>
+                                        <td colspan="6">جاري تحميل البيانات...</td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                        <p id="message" class="message"></p>
+
+                    </section>
+
+                </section>
+
+                <!-- شاشة الأقسام -->
+                <section id="departmentsSection" class="page-section" hidden>
+
+                    <section class="departments-section">
+
+                        <div class="section-header">
+
+                            <div>
+                                <h2>إدارة الأقسام</h2>
+                                <p>عرض وإدارة الأقسام المسجلة في النظام</p>
+                            </div>
+
+
+                            <div class="header-actions">
+
+                                <button id="addDepartmentButton" class="add-button">
+                                    + إضافة قسم جديد
+                                </button>
+
+                                <button id="refreshDepartmentsButton" class="refresh-button">
+                                    تحديث البيانات ↻
+                                </button>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="table-container">
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>رقم القسم</th>
+                                        <th>اسم القسم</th>
+                                        <th>تاريخ الإنشاء</th>
+                                        <th>الإجراءات</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="departmentTableBody">
+                                    <tr>
+                                        <td colspan="4">جاري تحميل الأقسام...</td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                        <p id="departmentMessage" class="message"></p>
+                    </section>
+
+                </section>
+
+                <!-- شاشة الإعدادات -->
+                <section id="settingsSection" class="page-section" hidden>
+
+                    <section class="employees-section">
+
+                        <div class="section-header">
+                            <div>
+                                <h2>إعدادات النظام</h2>
+                                <p>إدارة المستخدمين وصلاحيات الدخول إلى النظام</p>
+                            </div>
+                        </div>
+
+                        <!-- نموذج إضافة مستخدم -->
+                        <div class="form-container">
+
+                            <h3>إنشاء مستخدم جديد</h3>
+
+                            <form id="userForm">
+
+                                <div class="form-group">
+                                    <label for="newUsername">اسم المستخدم</label>
+                                    <input type="text" id="newUsername" placeholder="أدخل اسم المستخدم" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="newPassword">كلمة المرور</label>
+                                    <input type="password" id="newPassword" placeholder="أدخل كلمة المرور" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="newUserRole">الصلاحية</label>
+                                    <select id="newUserRole" required>
+                                        <option value="user">مستخدم عادي</option>
+                                        <option value="admin">مدير النظام</option>
+                                    </select>
+                                </div>
+
+                                <button type="submit" id="createUserButton">
+                                    إنشاء المستخدم
+                                </button>
+
+                                <p id="userFormMessage"></p>
+
+                            </form>
+
+                        </div>
+                        <!-- قائمة المستخدمين المسجلين -->
+                        <div class="form-container">
+
+                            <h3>المستخدمون المسجلون</h3>
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>رقم المستخدم</th>
+                                        <th>اسم المستخدم</th>
+                                        <th>الصلاحية</th>
+                                        <th>الإجراءات</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="usersTableBody">
+                                    <tr>
+                                        <td colspan="4">جاري تحميل المستخدمين...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </section>
+
+                </section>
+
+            </div>
+
+        </main>
+
+
+        <!-- نافذة إضافة موظف -->
+        <div id="employeeModal" class="modal">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h2>إضافة موظف جديد</h2>
+
+                    <button type="button" id="closeModalButton" class="close-button">
+                        ×
+                    </button>
+
+                </div>
+
+                <form id="employeeForm">
+
+                    <div class="form-group">
+                        <label for="employeeName">اسم الموظف</label>
+
+                        <input type="text" id="employeeName" placeholder="أدخل اسم الموظف" required maxlength="100">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="employeeEmail">البريد الإلكتروني</label>
+
+                        <input type="email" id="employeeEmail" placeholder="example@email.com" required maxlength="150">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="employeeSalary">الراتب</label>
+
+                        <input type="number" id="employeeSalary" placeholder="أدخل الراتب" min="0" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="employeeDepartment">القسم</label>
+
+                        <select id="employeeDepartment" required>
+                            <option value="">اختر القسم</option>
+                        </select>
+                    </div>
+                    <p id="formMessage" class="message"></p>
+                    <div class="form-actions">
+
+                        <button type="submit" class="save-button">
+                            حفظ الموظف
+                        </button>
+
+                        <button type="button" id="cancelButton" class="cancel-button">
+                            إلغاء
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <!-- نافذة تعديل الموظف -->
+        <div id="editEmployeeModal" class="modal">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h2>تعديل بيانات الموظف</h2>
+
+                    <button type="button" id="closeEditModalButton" class="close-button">
+                        ×
+                    </button>
+
+                </div>
+
+                <form id="editEmployeeForm">
+
+                    <input type="hidden" id="editEmployeeId">
+
+                    <div class="form-group">
+                        <label for="editEmployeeName">اسم الموظف</label>
+
+                        <input type="text" id="editEmployeeName" required maxlength="100">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editEmployeeEmail">البريد الإلكتروني</label>
+
+                        <input type="email" id="editEmployeeEmail" required maxlength="150">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editEmployeeSalary">الراتب</label>
+
+                        <input type="number" id="editEmployeeSalary" min="0" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editEmployeeDepartment">القسم</label>
+
+                        <select id="editEmployeeDepartment" required>
+                            <option value="">اختر القسم</option>
+                        </select>
+                    </div>
+                    <p id="editFormMessage" class="message"></p>
+
+                    <div class="form-actions">
+
+                        <button type="submit" class="save-button">
+                            حفظ التعديلات
+                        </button>
+
+                        <button type="button" id="cancelEditButton" class="cancel-button">
+                            إلغاء
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <!-- نافذة إضافة قسم -->
+        <div id="departmentModal" class="modal">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h2>إضافة قسم جديد</h2>
+
+                    <button type="button" id="closeDepartmentModal" class="close-button">
+                        ×
+                    </button>
+
+                </div>
+
+                <form id="departmentForm">
+
+                    <div class="form-group">
+
+                        <label for="departmentName">اسم القسم</label>
+
+                        <input type="text" id="departmentName" placeholder="أدخل اسم القسم" required maxlength="100">
+
+                    </div>
+
+                    <p id="departmentFormMessage" class="message"></p>
+
+                    <div class="form-actions">
+
+                        <button type="submit" class="save-button">
+                            حفظ القسم
+                        </button>
+
+                        <button type="button" id="cancelDepartmentButton" class="cancel-button">
+                            إلغاء
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <!-- نافذة تعديل القسم -->
+        <div id="editDepartmentModal" class="modal">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h2>تعديل بيانات القسم</h2>
+
+                    <button type="button" id="closeEditDepartmentModal" class="close-button">
+                        ×
+                    </button>
+
+                </div>
+
+                <form id="editDepartmentForm">
+
+                    <input type="hidden" id="editDepartmentId">
+
+                    <div class="form-group">
+
+                        <label for="editDepartmentName">اسم القسم</label>
+
+                        <input type="text" id="editDepartmentName" placeholder="أدخل اسم القسم" required
+                            maxlength="100">
+
+                    </div>
+
+                    <p id="editDepartmentMessage" class="message"></p>
+
+                    <div class="form-actions">
+
+                        <button type="submit" class="save-button">
+                            حفظ التعديلات
+                        </button>
+
+                        <button type="button" id="cancelEditDepartment" class="cancel-button">
+                            إلغاء
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <footer>
+            نظام إدارة الموظفين © 2026
+        </footer>
+
+    </div>
+
+    <script src="/js/app.js"></script>
+    <script src="/js/departments.js"></script>
+</body>
+
+</html>
