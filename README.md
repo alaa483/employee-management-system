@@ -80,6 +80,8 @@ DB_PASSWORD=YOUR_DATABASE_PASSWORD
 DB_NAME=company_db
 JWT_SECRET=YOUR_SECRET_KEY
 JWT_EXPIRES_IN=1h
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD=YOUR_ADMIN_PASSWORD
 ```
 
 Replace the placeholder values with your own local configuration. Do not publish your `.env` file.
@@ -90,20 +92,26 @@ Run the SQL script in `database.sql` using MySQL Workbench.
 
 This creates the database and required tables.
 
-**Note:** An initial administrator account must be created before using the system. Account registration is restricted to administrators.
+### 6. Create the initial administrator
 
-### 6. Start the application
+Configure `ADMIN_USERNAME` and `ADMIN_PASSWORD` in your `.env` file, then run:
 
 ```bash
+npm run create-admin
+
+### 7. Start the application
 npm start
-```
 
-### 7. Open the application
-
+### 8. Start the application
+Open the application
 Visit:
-
 http://localhost:3000
 
+احفظ الملف بـ `Ctrl + S`.
+
+**مهم:** لا تشغّل أمر `npm run create-admin` على قاعدة بياناتك الحالية؛ لأن حساب المدير موجود بالفعل.
+
+أخبرني عندما تنتهي.
 ## Security
 
 - Passwords are hashed before storage.
